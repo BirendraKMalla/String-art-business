@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap");
+@import "tailwindcss";
+
+/* ---- Register Tailwind v4 Theme Variables ---- */
+@theme {
+  /* Colors -> generates bg-terracotta, text-deep-brown, border-sage, etc. */
+  --color-cream: #f9f5f0;
+  --color-parchment: #fdfaf4;
+  --color-warm-beige: #f0ebe3;
+  --color-terracotta: #c9653b;
+  --color-burnt-umber: #805533;
+  --color-deep-brown: #5a3e2b;
+  --color-sage: #8a9a8a;
+  --color-sage-light: #d4e0d4;
+  --color-charcoal: #222222;
+  --color-gold-accent: #d4af6b;
+  --color-footer-bg: #1a120a;
+
+  /* Typography -> generates font-heading, font-body, font-decorative */
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-decorative: "Cormorant Garamond", Georgia, serif;
+
+  /* Custom Shadows -> generates shadow-card, shadow-card-hover, etc. */
+  --shadow-card: 0 4px 20px rgba(90, 62, 43, 0.08);
+  --shadow-card-hover: 0 10px 30px rgba(139, 101, 59, 0.15);
+  --shadow-strong: 0 20px 40px rgba(90, 62, 43, 0.12);
+  --shadow-inner: inset 0 2px 8px rgba(0, 0, 0, 0.03);
+
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+/* ---- Custom CSS Transitions ---- */
+:root {
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ---- Dark Mode Theme ---- */
+/* Override color variables so all Tailwind utilities switch automatically */
+:root[data-theme="dark"] {
+  --color-cream: #0f0e0d;
+  --color-parchment: #1a1a18;
+  --color-warm-beige: #2a2825;
+  --color-terracotta: #d47a4a;
+  --color-burnt-umber: #9c5a33;
+  --color-deep-brown: #a67c52;
+  --color-sage: #9aa39e;
+  --color-sage-light: #2a3430;
+  --color-charcoal: #2a2a2a;
+  --color-gold-accent: #d4af6b;
+  --color-footer-bg: #1e1a14;
+
+  /* Softer shadows for dark backgrounds */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --shadow-inner: inset 0 2px 8px rgba(255, 255, 255, 0.04);
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-deep-brown);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  /* Subtle paper texture (light mode only) */
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 26c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23d4af6b' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* Disable paper texture in dark mode */
+:root[data-theme="dark"] body {
+  background-image: none;
+}
+
+/* Heading styles using Playfair Display */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-deep-brown);
+}
+
+h1 { font-size: 3rem; line-height: 1.1; }
+h2 { font-size: 2.25rem; line-height: 1.2; }
+h3 { font-size: 1.75rem; line-height: 1.3; }
+h4 { font-size: 1.25rem; line-height: 1.4; }
+h5 { font-size: 1.125rem; line-height: 1.4; }
+h6 { font-size: 1rem; line-height: 1.5; }
+
+/* Decorative / quote text */
+.decorative {
+  font-family: var(--font-decorative);
+}
+
+/* Link styles */
+a {
+  color: var(--color-terracotta);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--color-burnt-umber);
+}
+
+/* Links inside buttons must inherit the button's text color */
+/* Fixes text being invisible when global `a` color overrides button text-white */
+button a {
+  color: inherit;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-parchment);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-sage-light);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-sage);
+}

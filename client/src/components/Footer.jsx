@@ -26,7 +26,7 @@ function Footer() {
             {/* Social Media */}
             <div className="flex gap-3 mt-6">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/mallabirendra20/"
                 aria-label="Instagram"
                 className="
                   w-11 h-11
@@ -43,7 +43,7 @@ function Footer() {
               </a>
 
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/birendra.malla.774846/"
                 aria-label="Facebook"
                 className="
                   w-11 h-11
